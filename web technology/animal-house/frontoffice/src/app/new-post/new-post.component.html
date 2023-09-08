@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Nuovo post</h2>
+    <!-- TITOLO -->
+    <mat-form-field class="field" appearance="fill">
+        <mat-label aria-label="Title input">Titolo</mat-label>
+        <input [(ngModel)]="title" required type="text" matInput>
+    </mat-form-field>
+    <!-- DESCRIPTION -->
+    <mat-form-field class="field" appearance="fill">
+        <mat-label aria-label="Description input">Descrizione</mat-label>
+        <input [(ngModel)]="description" required type="text" matInput>
+    </mat-form-field>
+    <label class="image-upload-container btn btn-bwm">
+        <input #imageInput
+               type="file"
+               accept="image/*"
+               (change)="processFile(imageInput)"
+               class="input-file">
+    </label>
+    <img class="img" *ngIf="img" [src]="img" alt="Immagine caricata "/>
+    <div>
+        <button class="btn-save btn-primary" (click)="publicPost()" mat-raised-button>Pubblica</button>
+    </div>
+</div>

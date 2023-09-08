@@ -1,0 +1,97 @@
+---------------UTENTE
+
+name 
+surname
+username -> Id
+password
+admin
+animals{ 
+	name:
+	{
+		type
+		gender (no required)
+		age (no required)
+		breed (no required)
+		description (no required)
+		image (no required)
+	}
+	...
+}
+points{
+	game: (Quiz, Memory, Impiccato)
+	{
+		last
+		best 
+	}
+	...
+}
+cart{
+    product_name: quantity
+}
+
+---------------PRODOTTO
+
+name -> Id
+price
+description 
+amount
+soldAmount
+category
+image
+
+---------------LEADERBOARD
+
+game (Quiz, Memory, Impiccato)
+first{ (no required)
+	username
+	best
+}
+second{ (no required)
+	username
+	best
+}
+third{ (no required)
+	username
+	best
+}
+
+
+---------------BACHECA "ECCOLO QUA", "CERCO PARTNER", "AIUTATEMI"
+
+id
+username
+title
+description
+date
+image (no required)
+comments[{
+	username
+	description
+	date
+},
+...
+]
+
+---------------SERVIZI
+
+city      <--- key
+address   <--- key
+name (no required)
+services: {
+    "Veterinario 1": {
+        available: [
+            "ISO 8601 date and hour of the available appointment"
+        ],
+        booked: {
+             "ISO 8601 date and hour of the booked appointment": username_of_user_who_booked,
+        },
+        type: "Veterinario" oppure "Dog Sitter" oppure ...
+        image (no required)
+	}
+    "Dog Sitter": { ... }
+    "Toelettatura": { ... }
+    "Psicologo":  { ... }
+    "Visita a domicilio per animali soli":  { ... }
+}
+
+

@@ -1,0 +1,26 @@
+<app-header [username]="username" [backButton]="true"></app-header>
+<div class="ecommerce">
+    <h1>Acquista i nostri prodotti</h1>
+    <div class="grid">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label aria-label="Filter for category input">Filtra per categoria</mat-label>
+                <mat-select (ngModelChange)="onChange($event)" [(ngModel)]="filterCategory">
+                    <mat-option *ngFor="let item of categoryList" [value]="item">{{item}}</mat-option>
+                    <mat-option value="Nessuno">Nessun filtro</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="noresult" *ngIf="productsList.length <= 0">Non ci sono prodotti disponibili.</div>
+        </div>
+    </div>
+    <div class="grid">
+        <mat-card *ngFor="let item of productsList; let i = index">
+            <div *ngIf="i < 3" id="best-seller">Più venduto</div>
+            <img [src]="item?.image" alt="img-products"/>
+            <mat-card-title>{{item?.name}}</mat-card-title>
+            <mat-card-subtitle>{{item?.description}}</mat-card-subtitle>
+            <span id="price">{{item?.price}}€</span>
+            <button (click)="addProductToShoppingCart(item)" class="btn-shop btn-primary" mat-raised-button><mat-icon>add_shopping_cart</mat-icon>Aggiungi al carrello</button>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.mat-form-field {
+    width: 100%;
+}
+.btn-save {
+    margin: 1rem 0;
+    width: 100%;
+}
+h2 {
+    text-transform: uppercase;
+    color: #98ccc7;
+}
+.img {
+    width: 100%;
+    margin: 1rem 0;
+}
+.input-file {
+    width: 100%;
+}
+.container {
+    max-height: 80vh;
+    overflow-y: auto;
+}

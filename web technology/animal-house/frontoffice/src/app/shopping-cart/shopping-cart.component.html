@@ -1,0 +1,24 @@
+<app-header [username]="username" [backButton]="true"></app-header>
+<div class="shopping-cart">
+    <div class="flex">
+        <h1>Il tuo carrello</h1>
+        <button [disabled]="listProducts.length <= 0" class="btn-primary" mat-raised-button (click)="buyAll()">Acquista tutto</button>
+    </div>
+    <div class="noresult" *ngIf="listProducts.length <= 0">Carrello vuoto.</div>
+    <div class="grid">
+        <mat-card *ngFor="let item of listProducts">
+            <img [src]="item?.image" alt="img-products"/>
+            <mat-card-title>{{item?.name}}</mat-card-title>
+            <mat-card-subtitle>{{item?.description}}</mat-card-subtitle>
+            <span id="price">{{item?.price}}€</span>
+            <mat-form-field appearance="fill">
+                <mat-label>Quantità</mat-label>
+                <mat-select [(ngModel)]="item.quantity" (ngModelChange)="onChange($event, item)">
+                    <mat-option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" [value]="i">{{i}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button class="btn-product btn-primary" mat-raised-button (click)="buyProduct(item)">Acquista</button>
+            <button (click)="removeProduct(item, false)" class="btn-product btn-primary" mat-raised-button><mat-icon>remove_shopping_cart</mat-icon>Rimuovi</button>
+        </mat-card>
+    </div>
+</div>

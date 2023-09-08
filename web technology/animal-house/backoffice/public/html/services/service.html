@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>${title}</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script src="/script//utils/logout.js"></script>
+    <script src="../../js/script/services-script.js"></script>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg bg-backoffice py-3">
+        <div class="container-fluid text-dark mx-3">
+
+            <a class="navbar-brand" href="/backoffice/home">
+                <img src="../../img/navbar-brand/Animal_house_backoffice.svg" alt="AnimalHouse Logo" height="40">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto nav-link-margin">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/backoffice/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/backoffice/users">Clienti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/backoffice/community">Community</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/backoffice/ecommerce">Ecommerce</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" aria-current="page"  href="#">Servizi</a>
+                    </li>
+                </ul> 
+
+                <div class="d-flex align-items-center">
+                    <div class="h2">
+                        <a href="/backoffice/profile" class="link-dark">
+                            <p hidden>Profilo</p>
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                    </div>
+    
+                    <div id="username" class="mx-2">${username}</div>
+                </div>
+
+                <a class="link-dark" id="logout-margin" href="/backoffice/login">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid text-center bg-backoffice py-4">
+        <h1>Servizi</h1>
+    </div>
+
+    <div class="container-fluid pt-4 px-3">
+      <a class="link-dark" href="javascript:history.go(-1)">Indietro</a>
+    </div>
+
+    <div class="container text-center fs-2 p-4">
+        ${Nome Servizio}
+    </div>
+
+    <div class="container p-3">
+      <form>
+        <fieldset>
+            <select class="form-select mb-3" id="id" aria-label="id" onchange="">
+                <option value="null" selected>Seleziona Città</option>
+            </select>
+            <select class="form-select mb-3" id="id" aria-label="id">
+                <option value="null" selected>Seleziona Via</option>
+            </select>
+            <select class="form-select mb-3" id="id" aria-label="id">
+              <option value="null" selected>Seleziona ${Nome Servizio}</option>
+          </select>
+        </fieldset>
+        <div class="container text-center mt-2">
+          <button class="btn btn-secondary btn-lg" onclick="getService()">Cerca</button>
+        </div>
+      </form>
+    </div>
+    
+    <hr>
+
+    
+    <div class="container text-center fs-3 p-4">
+        <p>Prenotazioni Attive</p>
+        <p class="fs-6 fw-light">Filtra prenotazioni</p>
+        <div class="input-group w-25 mb-5 mt-2 mx-auto">
+          <input type="text" class="form-control" placeholder="Nome Utente" id="searchBoardByUsername" aria-label="Username" aria-describedby="searchBoardByUsername">
+          <button class="btn btn-outline-secondary btn-sm" type="button" onclick="usernameFilter()">
+              <p hidden>Cerca per Nome Utente</p>
+              <i class="bi bi-search"></i>
+          </button>
+        </div>
+    </div>
+    <div class="container mb-5">
+        <div class="row row-cols-1 row-cols-lg-3">
+            <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Nome Utente</h5>
+                  <p class="card-text fs-6"><span class="mx-3">Data</span><span class="mx-3">Ora</span></p>
+                  <hr>
+                  <div class="d-flex justify-content-center gap-3">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Modifica</button>
+                    <button class="btn btn-danger" onclick="deleteReservation()">Annulla</button>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modifica Prenotazione</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+            <div class="row row-cols-2">
+                <div class="col w-25 px-2 text-end">
+                    <p style="height: 37.6px;">Nome Utente:</p>
+                    <p style="height: 37.6px;">Data:</p>
+                    <p style="height: 37.6px;">Ora:</p>
+                </div>
+                <div class="col w-75 px-2 text-center">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="" placeholder="Nome Utente" value="username" disabled>
+                        <label for="" hidden>Nome utente</label>
+                      </div>
+                      <div class="mb-3">
+                        <input type="date" class="form-control" id="" placeholder="Data Prenotazione" value="Data">
+                        <label for="" hidden>Data</label>
+                      </div>
+                      <div class="mb-3">
+                        <input type="time" class="form-control" id="" placeholder="Ora Prenotazione" value="Ora">
+                        <label for="" hidden>Ora</label>
+                      </div>
+                </div>  
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="modifyReservation()">Modifica</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container text-center fs-3 p-4">
+    Prenotazioni Disponibili
+    <div class="form-text fw-light fs-6">Nota. Prenotazioni mostrate sono esclusivamente quelle del mese corrente</div>
+  </div>
+  <div class="container mb-5">
+    <div class="row row-cols-1 row-cols-lg-3">
+        <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">Via</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Città</h6>
+              <p class="card-text fs-6"><span class="mx-3">Data</span><span class="mx-3">Ora</span></p>
+              <hr>
+              <button class="btn btn-success" onclick="bookService()">Prenota</button>
+            </div>
+          </div>
+    </div>
+  </div>
+
+  <div class="container-fluid p-3 bg-warning">
+    <div class="text-center">
+        <span class="fs-4 px-3">
+            <a type="button" role="button" href="/backoffice/services/bookservice" class="link-light text-decoration-none text-dark"> Prenota Appuntamento <i class="bi bi-chevron-double-right"></i></a>
+        </span>                    
+    </div>
+</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    </body>
+    </html>

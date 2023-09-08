@@ -1,0 +1,76 @@
+/* ROOT */
+
+.bg-backoffice{
+    background-color: #ffb703;
+}
+
+@media (min-width: 576px) {
+    .dim-logo-backoffice{
+        height: 150px;
+    }
+}
+
+@media (min-width: 768px) {
+    .dim-logo-backoffice{
+        height: 175px;
+    }
+}
+
+@media (min-width: 992px) {
+    .dim-logo-backoffice{
+        height: 200px;
+    }
+}
+
+.home-card{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* HOME */
+
+.nav-link-margin{
+    margin-right: 50px;
+}
+
+#sitename {
+    font-family: 'Lato', serif;
+    font-size: 60px;
+}
+
+@media (min-width: 992px) {
+    #logout-margin{
+        margin-left: 1em;
+    }
+}
+
+/* USER */
+
+#bg-add-user-link {
+    background-color: #023e8a;
+}
+
+/* COMMUNITY */
+
+.card-title-font{
+    font-family: 'Lato', serif;
+}
+
+/* ECOMMERCE */
+
+#filters{
+    background-color: #e5e5e5;
+}
+
+/* SERVICES */
+
+
+@media (min-width: 992px) {
+    .form-w-dim{
+        width: 50%;
+    }
+}
+
+.btn-w{
+    width: 78.975px;
+}
+

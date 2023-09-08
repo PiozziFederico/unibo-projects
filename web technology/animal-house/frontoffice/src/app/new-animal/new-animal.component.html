@@ -1,0 +1,55 @@
+<div class="container">
+    <h2 *ngIf="!modifyAnimal">Nuovo animale</h2>
+    <h2 *ngIf="modifyAnimal">Modifica {{this.oldAnimalName}}</h2>
+    <!-- NOME -->
+    <mat-form-field class="field" appearance="fill">
+        <mat-label aria-label="Name input">Nome</mat-label>
+        <input [(ngModel)]="name" required type="text" matInput>
+    </mat-form-field>
+    <!-- SPECIE -->
+    <mat-form-field appearance="fill">
+        <mat-label aria-label="Type input">Specie</mat-label>
+        <mat-select (ngModelChange)="onChange($event)" required [(ngModel)]="type">
+            <mat-option *ngFor="let item of typeList" [value]="item">{{item}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <!-- SPECIE == ALTRO -->
+    <mat-form-field *ngIf="this.fieldType" class="field" appearance="fill">
+        <mat-label aria-label="Type input">Specifa la specie</mat-label>
+        <input [(ngModel)]="typeSpecific" required type="text" matInput>
+    </mat-form-field>
+    <!-- RAZZA -->
+    <mat-form-field class="field" appearance="fill">
+        <mat-label aria-label="Breed input">Razza</mat-label>
+        <input [(ngModel)]="breed" type="text" matInput>
+    </mat-form-field>
+    <!-- GENERE -->
+    <mat-form-field appearance="fill">
+        <mat-label aria-label="Gender input">Genere</mat-label>
+        <mat-select [(ngModel)]="gender">
+            <mat-option *ngFor="let item of genderList" [value]="item">{{item}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <!-- ANNI -->
+    <mat-form-field class="field" appearance="fill">
+        <mat-label aria-label="Age input">Anni</mat-label>
+        <input [(ngModel)]="age" type="number" matInput>
+    </mat-form-field>
+    <!-- DESCRIZIONE -->
+    <mat-form-field appearance="fill">
+        <mat-label aria-label="Note input">Note</mat-label>
+        <textarea matInput [(ngModel)]="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+    <label *ngIf="!modifyAnimal" class="image-upload-container btn btn-bwm" aria-label="Image input">
+        <input #imageInput
+               type="file"
+               accept="image/*"
+               (change)="processFile(imageInput)"
+               class="input-file">
+    </label>
+    <img *ngIf="img && !modifyAnimal" class="img" [src]="img" alt="Immagine caricata"/>
+    <div>
+        <button class="btn-save btn-primary" (click)="saveAnimal()" mat-raised-button>Salva</button>
+    </div>
+</div>

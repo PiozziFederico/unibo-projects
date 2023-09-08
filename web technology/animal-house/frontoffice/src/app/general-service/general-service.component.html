@@ -1,0 +1,70 @@
+<app-header [username]="username" [backButton]="true"></app-header>
+<div class="service">
+  <h1>Servizi</h1>
+  <mat-form-field appearance="fill">
+    <mat-label aria-label="Service selection">Tipo di servizio</mat-label>
+    <mat-select (ngModelChange)="serviceChanged($event)" required [(ngModel)]="type">
+      <mat-option *ngFor="let item of options" [value]="item">{{item}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label aria-label="City selection">Seleziona la città</mat-label>
+    <mat-select (ngModelChange)="cityChanged($event)" required [(ngModel)]="city" [disabled]="!type">
+      <mat-option *ngFor="let city of listOfCity" [value]="city">
+        {{city}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label aria-label="Address selection">Seleziona l'indirizzo</mat-label>
+    <mat-select (ngModelChange)="addressChanged($event)" required [(ngModel)]="address" [disabled]="!city">
+      <mat-option *ngFor="let address of listOfAddress" [value]="address">
+        {{address}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label aria-label="Doctor selection">Seleziona il dottore</mat-label>
+    <mat-select (ngModelChange)="doctorChanged($event)" required [(ngModel)]="doctor" [disabled]="!address">
+      <mat-option *ngFor="let doctor of listOfServices" [value]="doctor">
+        {{doctor[0]}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label aria-label="Date selection">Seleziona la data</mat-label>
+    <mat-select (ngModelChange)="dateChanged($event)" required [(ngModel)]="date" [disabled]="!doctor">
+      <mat-option *ngFor="let date of dateFormatted" [value]="date">
+        {{date?.date}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="date && dateFormatted && type && city && address && doctor">
+    <mat-card>
+      <mat-card-title>{{address}}</mat-card-title>
+      <mat-card-subtitle>{{city}}</mat-card-subtitle>
+      <p>{{doctor[0]}}</p>
+      <p>{{date?.date}}</p>
+      <mat-card-footer>
+        <button class="btn-book btn-primary" (click)="book(date)" mat-raised-button>Prenota</button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <div class="padding">
+    <h2>Le mie prenotazioni </h2>
+    <div class="noresult" *ngIf="booked?.length <= 0">Non hai prenotazioni attive.</div>
+    <div *ngIf="booked?.length > 0" class="grid">
+      <div *ngFor="let item of booked" [ngStyle]="{'display': item[1] != username ? 'none' : 'block'}">
+        <mat-card *ngIf="item[1] == username">
+          <mat-card-title>{{address}}</mat-card-title>
+          <mat-card-subtitle>{{city}}</mat-card-subtitle>
+          <p>{{doctor[0]}}</p>
+          <p>{{item[2]}}</p>
+          <mat-card-footer>
+            <button (click)="deleteBooked(item[0])" mat-icon-button><mat-icon>delete_forever</mat-icon></button>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

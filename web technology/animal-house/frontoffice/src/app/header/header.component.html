@@ -1,0 +1,29 @@
+<mat-toolbar>
+  <button *ngIf="!backButton" mat-icon-button aria-label="Menu button" [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button *ngIf="backButton" mat-icon-button aria-label="Back button" (click)="backNavigation()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button class="item-menu" mat-menu-item [routerLink]="['/ecommerce', {user: username}]">E-commerce</button>
+    <button class="item-menu" mat-menu-item [routerLink]="['/general-service', {user: username, type: 'Dog sitter'}]">Dog sitter</button>
+    <button class="item-menu" mat-menu-item [routerLink]="['/general-service', {user: username, type: 'Veterinario'}]">Veterinario</button>
+    <button class="item-menu" mat-menu-item [routerLink]="['/general-service', {user: username, type: 'Toelettatura'}]">Toelettatura</button>
+    <button class="item-menu" mat-menu-item [routerLink]="['/general-service', {user: username, type: 'Psicologo'}]">Psicologo</button>
+    <button class="item-menu" mat-menu-item [routerLink]="['/general-service', {user: username, type: 'Visita a domicilio per animali soli'}]">Visita domicilio</button>
+    <button class="item-menu" mat-menu-item [routerLink]="['/general-board', {user: username, type: 'hereItIs'}]">Eccolo qua</button>
+    <button class="item-menu" mat-menu-item [routerLink]="['/general-board', {user: username, type: 'findingPartner'}]">Cerco partner</button>
+    <button class="item-menu" mat-menu-item [routerLink]="['/general-board', {user: username, type: 'needHelp'}]">Aiutatemi</button>
+    <a class="item-menu" mat-menu-item href="https://site212234.tw.cs.unibo.it/game" mat-menu-item>Gioca</a>
+  </mat-menu>
+  <img src="/frontoffice/assets/logo/Animal_house_frontoffice.svg" alt="" class="logo-img">
+  <div>
+    <button mat-icon-button aria-label="Shopping cart button" [routerLink]="['/cart', {user: username}]">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <button class="margin" mat-icon-button aria-label="Profile button" [routerLink]="['/profile', {user: username}]">
+      <mat-icon>person</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

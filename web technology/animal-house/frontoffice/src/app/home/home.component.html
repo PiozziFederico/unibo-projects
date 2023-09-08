@@ -1,0 +1,81 @@
+<app-header [username]="username" [backButton]="false"></app-header>
+<div class="home">
+    <div class="servizi">
+        <h1>Scopri i nostri servizi</h1>
+        <div class="grid">
+          <mat-card>
+              <mat-card-title>E-commerce</mat-card-title>
+              <mat-card-subtitle>Scopri la nostra vasta gamma di prodotti.</mat-card-subtitle>
+              <img src="/frontoffice/assets/img/41W-JQofD0L._SL500_.jpg" alt="Immagine Ecommerce">
+              <mat-card-actions>
+                <button class="btn-service btn-primary" [routerLink]="['/ecommerce', {user: username}]" mat-raised-button>Vai al servizio</button>
+              </mat-card-actions>
+          </mat-card>
+          <mat-card class="dog-sitter">
+              <mat-card-title>Dog sitter</mat-card-title>
+              <mat-card-subtitle>Il nostro servizio di dog sitting ti permetterà di non preoccuparti delle passeggiate serali, e non solo, con il tuo amico a quattro zampe. Prenota direttamente dall'app.</mat-card-subtitle>
+              <img src="/frontoffice/assets/img/dog-sitter3.jpg" alt="Immagine Dog Sitter">
+              <mat-card-actions>
+                <button class="btn-service btn-primary" mat-raised-button [routerLink]="['/general-service', {user: username, type: 'Dog sitter'}]">Prenota</button>
+              </mat-card-actions>
+          </mat-card>
+          <mat-card>
+              <mat-card-title>Veterinario</mat-card-title>
+              <mat-card-subtitle>Affida la salute dei tuoi animali ai nostri esperti. Potrai prenotare una visita direttamente dall'app.</mat-card-subtitle>
+              <img src="/frontoffice/assets/img/veterinario.jpg" alt="Immagine Veterinario">
+              <mat-card-actions>
+                <button class="btn-service btn-primary" mat-raised-button [routerLink]="['/general-service', {user: username, type: 'Veterinario'}]">Prenota</button>
+              </mat-card-actions>
+          </mat-card>
+          <mat-card>
+              <mat-card-title>Toelettatura</mat-card-title>
+              <mat-card-subtitle>Porta il tuo animale alla nostra toelettatura e ce ne occupereremo noi con i nostri prodotti di alta qualità. Prenota direttamente dall'app.</mat-card-subtitle>
+              <img src="/frontoffice/assets/img/toelettatura.jpg" alt="Immagine Toelettatura">
+              <mat-card-actions>
+                <button class="btn-service btn-primary" mat-raised-button [routerLink]="['/general-service', {user: username, type: 'Toelettatura'}]">Prenota</button>
+              </mat-card-actions>
+          </mat-card>
+          <mat-card>
+              <mat-card-title>Psicologo</mat-card-title>
+              <mat-card-subtitle>Affida la salute mentale del tuo animale ai nostri psicologi. Prenota direttamente dall'app un appuntamento.</mat-card-subtitle>
+              <img src="/frontoffice/assets/img/psicologo.jpg" alt="Immagine Psicologo">
+              <mat-card-actions>
+                <button class="btn-service btn-primary" mat-raised-button [routerLink]="['/general-service', {user: username, type: 'Psicologo'}]">Prenota</button>
+              </mat-card-actions>
+          </mat-card>
+          <mat-card>
+              <mat-card-title>Visita domicilio</mat-card-title>
+              <mat-card-subtitle>Affidati ai nostri esperti, prenota una visita a domicilio per animali soli. Prenota direttamente dall'app un appuntamento.</mat-card-subtitle>
+              <img src="/frontoffice/assets/img/animali-soli.jpg" alt="Immagine Visita Domicilio">
+              <mat-card-actions>
+                <button class="btn-service btn-primary" mat-raised-button [routerLink]="['/general-service', {user: username, type: 'Visita a domicilio per animali soli'}]">Prenota</button>
+              </mat-card-actions>
+          </mat-card>
+        </div>
+        <h2>Scopri le nostre bacheche</h2>
+        <div class="grid">
+          <mat-card>
+            <mat-card-title>Eccolo qua</mat-card-title>
+            <mat-card-subtitle>Scopri la nostra bacheca Eccolo qua. Fai conoscere alla community di Animal House i tuoi animali, condividi con noi le loro foto.</mat-card-subtitle>
+            <mat-card-actions>
+              <button class="btn-service btn-primary" [routerLink]="['/general-board', {user: username, type: 'hereItIs'}]" mat-raised-button>Vai alla bacheca</button>
+            </mat-card-actions>
+          </mat-card>
+          <mat-card>
+            <mat-card-title>Cerco partner</mat-card-title>
+            <mat-card-subtitle>Scopri la nostra bacheca Cerco partner. Posta una foto del tuo animale per trovargli il partner giusto per lui.</mat-card-subtitle>
+            <mat-card-actions>
+              <button class="btn-service btn-primary" [routerLink]="['/general-board', {user: username, type: 'findingPartner'}]" mat-raised-button>Vai alla bacheca</button>
+            </mat-card-actions>
+          </mat-card>
+          <mat-card>
+            <mat-card-title>Aiutatemi</mat-card-title>
+            <mat-card-subtitle>Scopri la nostra bacheca Aiutatemi. Qui potrai postare ogni tipo di domanda e la nostra community di Animal House ti risponderà.</mat-card-subtitle>
+            <mat-card-actions>
+              <button class="btn-service btn-primary" [routerLink]="['/general-board', {user: username, type: 'needHelp'}]" mat-raised-button>Vai alla bacheca</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>${title}</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/user-script.js"></script>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg bg-backoffice py-3">
+        <div class="container-fluid text-dark mx-3">
+
+            <a class="navbar-brand" href="#">
+                <img src="../../img/navbar-brand/Animal_house_backoffice.svg" alt="AnimalHouse Logo" height="40">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto nav-link-margin">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/backoffice/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/backoffice/users">Clienti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/backoffice/community">Community</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/backoffice/ecommerce">Ecommerce</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/backoffice/services">Servizi</a>
+                    </li>
+                </ul> 
+
+                <div class="h2">
+                    <a href="/backoffice/profile" class="link-dark">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                </div>
+
+                <div id="username" class="mx-2">${username}</div>
+
+                <a class="link-dark" id="logout-margin" href="/backoffice/login">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!--Titolo-->
+    <div class="container-fluid text-center p-5" style="background-color: #ffb703;">
+        <div class="text-dark fs-1">Anagrafica Clienti</div>
+    </div>
+
+    <!--Aggiungi Cliente-->
+    <section id="new-user">
+    <div class="container mt-3">
+        <div class="fs-2 text-center">
+            <span>Aggiungi Cliente</span>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <form>
+            <fieldset>
+                <legend>Dati Cliente</legend>
+                <div class="row g-3 p-sm-5">
+                    <div class="col">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="col">
+                        <label for="surname" class="form-label">Cognome</label>
+                        <input type="text" class="form-control" id="surname">
+                    </div>
+                </div>
+                <div class="row g-3 p-sm-5">
+                    <div class="col">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" required>
+                    </div>
+                    <div class="col">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="text" class="form-control" id="password">
+                    </div>
+                </div>
+                <div class="text-center pb-sm-5 pt-2">
+                    <input class="form-check-input" type="checkbox" value="false" id="admin">
+                    <label class="form-check-label" for="admin">Admin</label>
+                </div>
+
+                <legend>Animali Cliente</legend>
+                
+                <!--Tabella Animali Aggiunti-->
+                <div class="container mt-5">
+                <table class="table table-light m-auto" id="newUserAnimals" hidden>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Sesso</th>
+                            <th scope="col">Età</th>
+                            <th scope="col">Razza</th>
+                            <th scope="col">Descrizione</th>
+                            <th scope="col">Elimina</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider table-light">
+                    </tbody>
+                </table>
+                </div>
+
+                <!--Form animale-->
+                <div id="animalForm" class="mt-5"></div>
+
+                <!-- Bottoni di aggiunta/conferma animale-->
+                <button type="button" class="btn btn-success mt-2" onclick="addFormAnimal()" id="AFA">
+                    <i class="bi bi-plus"></i>Aggiungi
+                </button>
+                <div class="text-center">
+                    <button type="button" class="btn btn-lg btn-dark m-5" onclick="AddNewUser()">Registra Cliente</button>
+                    <a type="button" class="btn btn-lg btn-danger m-5" href="/backoffice/users" style="width: 171.41px;">Annulla</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+</body>
+</html>

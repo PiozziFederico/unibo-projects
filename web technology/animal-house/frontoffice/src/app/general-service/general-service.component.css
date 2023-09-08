@@ -1,0 +1,25 @@
+.service {
+    margin: 1rem;
+}
+::ng-deep .service .mat-form-field-infix {
+    display: flex;
+    align-items: center;
+}
+.mat-form-field {
+    width: 100%;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
+.mat-card-footer {
+    padding: 0 16px 16px 16px;
+    text-align: right;
+}
+.padding {
+    padding: 2rem 0;
+}
+.btn-book {
+    width: fit-content;
+}

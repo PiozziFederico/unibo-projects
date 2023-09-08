@@ -1,0 +1,50 @@
+<app-header [username]="username" [backButton]="true"></app-header>
+<div class="board">
+    <div class="header">
+        <h1 *ngIf="type == 'hereItIs'">Eccolo qua</h1>
+        <h1 *ngIf="type == 'findingPartner'">Cerco partner</h1>
+        <h1 *ngIf="type == 'needHelp'">Aiutatemi</h1>
+        <button (click)="addPost()" class="shadow" mat-icon-button><mat-icon>add</mat-icon></button>
+    </div>
+    <div class="noresult" *ngIf="posts.length <= 0">Non ci sono post per questa bacheca. Creane uno te!</div>
+    <mat-card class="card" *ngFor="let post of posts">
+        <mat-card-header>
+            <div class="subtitle">
+                <mat-card-subtitle>{{post?.username}}</mat-card-subtitle>
+                <mat-card-subtitle>{{post?.date}}</mat-card-subtitle>
+            </div>
+            <mat-card-title>{{post?.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{post?.description}}</p>
+            <img class="img" *ngIf="post?.image" [src]="post?.image" alt="Immagine post"/>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions id="arrow">
+            <button class="shadow" mat-icon-button (click)="changeShowing(post)">
+                <mat-icon *ngIf="!post?.check">keyboard_arrow_down</mat-icon>
+                <mat-icon *ngIf="post?.check">keyboard_arrow_up</mat-icon>
+            </button>
+        </mat-card-actions>
+        <div *ngIf="post?.check">
+            <div *ngIf="post.comments <= 0 || post.comments == []" class="noresult">Non ci sono commenti per questo post.</div>
+            <div class="flex" *ngFor="let comment of post.comments">
+                <button disabled class="shadow" mat-icon-button><mat-icon>person_outline</mat-icon></button>
+                <mat-card class="card comments">
+                    <div class="subtitle">
+                        <mat-card-subtitle>{{comment?.username}}</mat-card-subtitle>
+                        <mat-card-subtitle>{{comment?.date}}</mat-card-subtitle>
+                    </div>
+                    <mat-card-content>
+                        <p>{{comment?.description}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div class="subtitle">
+            <button disabled class="shadow" mat-icon-button><mat-icon>person_outline</mat-icon></button>
+            <textarea [(ngModel)]="post.comment" (ngModelChange)="onChange($event, post)" placeholder="Scrivi un commento..." rows="2" [id]="post?.id"></textarea>
+            <button [disabled]="post?.comment == '' || post?.comment == ' '" (click)="addComment(post)" mat-icon-button><mat-icon>send</mat-icon></button>
+        </div>
+    </mat-card>
+</div>

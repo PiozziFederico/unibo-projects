@@ -1,0 +1,79 @@
+<app-header [username]="username" [backButton]="true"></app-header>
+<div class="profile">
+    <form class="form-profile">
+      <div class="container">
+        <h1 class="nomargin">Il mio account</h1>
+        <div class="actions">
+          <button class="shadow" (click)="this.editingProfile()" mat-icon-button><mat-icon>edit</mat-icon></button>
+          <button class="shadow" (click)="this.logout()" mat-icon-button><mat-icon>logout</mat-icon></button>
+        </div>
+      </div>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Nome</mat-label>
+        <input type="text" matInput [disabled]="!this.editProfile" [value]="this.user?.name">
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Cognome</mat-label>
+        <input type="text" matInput [disabled]="!this.editProfile" [value]="this.user?.surname">
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Username</mat-label>
+        <input type="text" matInput disabled="true" [value]="this.user?.username">
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput [disabled]="!this.editProfile" [value]="this.user?.password">
+      </mat-form-field>
+      <button *ngIf="this.editProfile" class="btn-save btn-primary" (click)="saveEdits()" mat-raised-button>Salva</button>
+    </form>
+    <div class="section-animal" *ngIf="dataSource">
+      <div class="container">
+        <h2 class="nomargin">I miei animali</h2>
+        <div class="actions">
+          <button (click)="addAnimal()" class="shadow" mat-icon-button><mat-icon>add</mat-icon></button>
+        </div>
+      </div>
+      <div class="noresult" *ngIf="dataSource?.length <= 0 || dataSource == {}">Non ci sono animali salvati, aggiungili per averli sempre qui.</div>
+      <div class="grid">
+        <mat-card (click)="editCardAnimal(animal)" *ngFor="let animal of dataSource" class="example-card">
+          <mat-card-header>
+            <mat-card-title-group>
+              <mat-card-title>{{animal[0]}}</mat-card-title>
+              <mat-card-subtitle>
+                {{animal[1]?.type}}, {{animal[1]?.breed || 'Razza non specificata'}}<br>
+                {{animal[1]?.age || '-'}} anno/i<br>
+                {{animal[1]?.gender}}
+              </mat-card-subtitle>
+              <img *ngIf="animal[1]?.image" class="img-card" mat-card-md-image [src]="animal[1]?.image" [alt]="'Immagine animale ' + animal[0]">
+            </mat-card-title-group>
+          </mat-card-header>
+          <mat-card-content>
+            {{animal[1]?.description || 'Non hai inserito nessuna descrizione per questo animale.'}}
+          </mat-card-content>
+          <mat-card-footer>
+            <button (click)="deleteAnimal($event, animal[0])" mat-icon-button><mat-icon>delete_forever</mat-icon></button>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+    <div class="points">
+      <h2>Punteggi</h2>
+      <div class="noresult" *ngIf="points?.length <= 0 || points == {}">Nessun punteggio salvato.</div>
+      <table mat-table [dataSource]="points" class="mat-elevation-z8 table" *ngIf="points?.length > 0">
+        <ng-container matColumnDef="game">
+          <th mat-header-cell *matHeaderCellDef>Gioco</th>
+          <td mat-cell *matCellDef="let element">{{element[0]}}</td>
+        </ng-container>
+        <ng-container matColumnDef="best">
+          <th mat-header-cell *matHeaderCellDef>Migliore</th>
+          <td mat-cell *matCellDef="let element">{{element[1]?.best}}</td>
+        </ng-container>
+        <ng-container matColumnDef="last">
+          <th mat-header-cell *matHeaderCellDef>Ultimo</th>
+          <td mat-cell *matCellDef="let element">{{element[1]?.last}}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+</div>

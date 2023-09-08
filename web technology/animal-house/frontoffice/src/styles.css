@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* menu */
+.cdk-overlay-container .cdk-overlay-connected-position-bounding-box {
+    top: 20px!important;
+    left: 0px!important;
+    width: 100vw!important;
+}
+.mat-menu-panel {
+    width: 100vw;
+    max-width: 100vw!important;
+}
+
+/* input disabled for profile form */
+.form-profile .mat-input-element:disabled {
+    color: black;
+}
+/* list for profile score */
+.mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Header profile table text center */
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    text-align: center!important;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #5c6570;
+}
+.mat-icon-button {
+    color: #5c6570;
+}
+.mat-card-title {
+    color: #98ccc7;
+}
+.btn-primary {
+    background-color: #98ccc7;
+    text-transform: uppercase;
+    padding: 5px!important;
+    font-size: 16px;
+    color: #5c6570;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+.btn-primary mat-icon {
+    color: #5c6570;
+}
+a {
+    color: #98ccc7;
+}
+.noresult {
+    color: rgba(0,0,0,.54);
+}
+.mat-form-field {
+    font-size: 17px;
+}

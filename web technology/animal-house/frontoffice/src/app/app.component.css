@@ -1,0 +1,6 @@
+
+::ng-deep .header-login .mat-card-header-text {
+    margin: 1rem auto!important;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
